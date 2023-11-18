@@ -36,11 +36,13 @@ import java.io.File;
 import java.util.HashMap;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, Overlay.OnClickListener {
+    public float ecoPointNum=0;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private FusedLocationProviderClient locationClient;
     private TextView latitudeTextView;
     private TextView longitudeTextView;
+    private TextView ecoPoint;
     private NaverMap naverMap;
     LatLng coord = new LatLng(37.5670135, 126.9783740);
     HashMap<Marker, String> markerToPhotoMap = new HashMap<>();
@@ -62,17 +64,34 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         latitudeTextView = findViewById(R.id.latitude);
         longitudeTextView = findViewById(R.id.longitude);
+        ecoPoint=findViewById(R.id.ecopoint);
         locationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
         File imgFile = new File("/path/to/image.jpg");
         ImageView myImage = findViewById(R.id.image_view);
         Glide.with(this).load(imgFile).into(myImage);
+        Button buttonGame=findViewById(R.id.game_play);
         Button button = findViewById(R.id.button);
+        Button market=findViewById(R.id.to_market);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivity(intent);
+            }
+        });
+        market.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MarketActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ecoPointNum++;
+                ecoPoint.setText("EcoPoint: "+ecoPointNum);
             }
         });
         mapFragment.getMapAsync(this);
