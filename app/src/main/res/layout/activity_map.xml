@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+    <include
+        layout="@layout/dialog_image"
+        android:layout_width="164dp"
+        android:layout_height="159dp" />
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:layout_width="match_parent"
@@ -24,5 +27,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912" />
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitude"
+        app:layout_constraintVertical_bias="0.058" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
